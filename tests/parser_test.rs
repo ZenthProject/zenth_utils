@@ -1,9 +1,11 @@
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use std::path::PathBuf;
-    use zenth_utils::utils;
+    use zenth_utils::utils::sanitizer::parser::{
+        FileType,
+        FileParser
+    };
 
     #[test]
     fn test_file_type_from_extension() {

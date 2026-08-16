@@ -3,6 +3,12 @@ use std::path::Path;
 
 const CHUNK_SIZE: usize = 65536; // 64 KB
 
+enum PassKind {
+    Zeros,
+    Ones,
+    Random,
+}
+
 /// Écrase un fichier avec 3 passes puis le supprime.
 ///
 /// - Passe 1 : zéros (0x00)
@@ -37,12 +43,6 @@ pub fn secure_delete(path: &Path) -> std::io::Result<()> {
     }
 
     std::fs::remove_file(path)
-}
-
-enum PassKind {
-    Zeros,
-    Ones,
-    Random,
 }
 
 fn write_pass(file: &mut std::fs::File, size: usize, kind: PassKind) -> std::io::Result<()> {
